@@ -1,0 +1,39 @@
+.quantity-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+}
+
+.quantity-input {
+    width: 80px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    transition: border 0.3s ease;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.right-align {
+    position: absolute;
+    right: 0;
+}

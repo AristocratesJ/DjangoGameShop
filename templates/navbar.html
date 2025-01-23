@@ -1,0 +1,15 @@
+{% load static %}
+<nav>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'store' %}">Store</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'cart' %}">Cart</a></li>
+            <li><a href="{% url 'profile' %}">My Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Log in</a></li>
+            <li><a href="{% url 'register' %}">Sign in</a></li>
+        {% endif %}
+    </ul>
+</nav>

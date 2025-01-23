@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>APG Shop</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+<header>
+{% include 'navbar.html' %}
+</header>
+
+<main>
+    {% block content %}
+        CONTENT
+    {% endblock %}
+</main>
+
+<footer>
+    <p>&copy 2025. All right reserved.</p>
+    <p>Creator - <a href="https://github.com/aristocratesJ">AristocratesJ</a></p>
+    <p>Github <a href="">repository</a></p>
+</footer>
+
+</body>
+</html>

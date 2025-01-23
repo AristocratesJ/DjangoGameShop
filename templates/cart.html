@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>Cart</h1>
+    {% if user.is_authenticated %}
+        <div class="container">
+            {% if cart_items %}
+                {% for item in cart_items %}
+                    <div class="card">
+                        <a href="{% url 'game_details' item.game.id %}" class="card-link">
+                            <div class="card-image">
+                                {% if item.game.image %}
+                                    <img src="{{ item.game.image.url }}" alt="{{ item.game.name }}">
+                                {% else %}
+                                    <p class="card-placeholder">No Image Available</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="card-details">
+                                <h3 class="card-title">{{ item.game.name }}</h3>
+                                <p class="card-price">${{ item.game.price|floatformat:2 }}</p>
+                            </div>
+                        </a>
+                        <form action="{% url 'delete_from_cart' item.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="button button-danger" type="submit">Delete</button>
+                        </form>
+                    </div>
+                {% endfor %}
+
+                {% include 'messages.html' %}
+
+                <div class="summary-container">
+                    <p class="summary-item">Total Items: {{ cart_items|length }}</p>
+                    <p class="summary-item"><strong>Total Price:</strong> ${{ cart_items|total_cart_price }}</p>
+                    <form action="{% url 'checkout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="button" type="submit">Checkout</button>
+                    </form>
+                </div>
+            {% else %}
+                <p>Your cart is empty.</p>
+            {% endif %}
+        </div>
+        <button onclick="location.href='{% url 'store' %}'" class="button button-link">Continue Shopping</button>
+    {% else %}
+        <p>You aren't logged in.</p>
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+{% endblock %}

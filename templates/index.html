@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Welcome to Again Play Game Shop</h1>
+
+    <div class="section-wrapper">
+        <!-- User Welcome Section -->
+        <section class="section">
+            {% if user.is_authenticated %}
+                <div class="welcome-banner">
+                    Welcome, {{ user.username }}! We're so glad you're here.
+                </div>
+            {% else %}
+                <div class="welcome-banner">
+                    You are not logged in. <a href="{% url 'login' %}">Log in</a> to fully use the store.
+                </div>
+                <div class="welcome-banner">
+                    Don't have account? <a href="{% url 'register' %}">Sign up</a> and join us!
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- About Section -->
+        <section class="section">
+            <p>
+                <strong>About APG:</strong> Again Play Games store was created by players for players.
+                Explore our vast collection of games, buy your favorites, or sell your own cherished games with ease!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat.
+            </p>
+        </section>
+    </div>
+{% endblock %}

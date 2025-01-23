@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/game_details.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {# Left #}
+    <div class="game-image">
+        {% if game.image %}
+            <img src="{{ game.image.url }}" alt="Image of {{ game.title }}">
+        {% else %}
+            <img src="{% static 'images/default/no_image.jpg' %}" alt="No image">
+        {% endif %}
+    </div>
+
+    {# Right #}
+    <div class="game-details">
+        <h1>{{ game }}</h1>
+        <ul>
+            <li><strong>Developer:</strong> <a href="{{ game.developer.website }}">{{ game.developer }}</a></li>
+            <li><strong>Added:</strong> {{ game.add_date }}</li>
+            <li><strong>Category:</strong> {{ game.category }}</li>
+            <li><strong>Platform: </strong>
+                {% if game.platform == "PC" %}
+                    <img src="{% static 'images/platform_icons/pc_icon.png' %}" alt="PC icon" class="platform-icon">
+                {% elif game.platform == "PS" %}
+                    <img src="{% static 'images/platform_icons/ps_icon.png' %}" alt="PlayStation icon" class="platform-icon">
+                {% elif game.platform == "XB" %}
+                    <img src="{% static 'images/platform_icons/xbox_icon.png' %}" alt="PC icon" class="platform-icon">
+                {% elif game.platform == "NT" %}
+                    <img src="{% static 'images/platform_icons/nintendo_icon.png' %}" alt="PC icon" class="platform-icon">
+                {% endif %}
+            </li>
+            <li><strong>Seller:</strong> {{ game.seller }}</li>
+            <li><strong>Left:</strong> {{ game.quantity }}</li>
+            <li class="price">${{ game.price }}</li>
+        </ul>
+
+        {% if user.is_authenticated %}
+            <form action="{% url 'add_to_cart' game.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="button button-link">Add To Cart</button>
+            </form>
+
+            {% include 'messages.html' %}
+        {% else %}
+            <p><a href="{% url 'login' %}">Log in</a> to add this game to your cart.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

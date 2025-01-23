@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for game in games %}
+            <div class="card">
+                <a href="{% url 'game_details' game.id %}" class="card-link">
+                    <div class="card-image">
+                        {% if game.image %}
+                            <img src="{{ game.image.url }}" alt="{{ game.name }}">
+                        {% else %}
+                            <p class="card-placeholder">No Image Available</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-details">
+                        <h3 class="card-title">{{ game.name }}</h3>
+                        <p class="card-price">${{ game.price|floatformat:2 }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

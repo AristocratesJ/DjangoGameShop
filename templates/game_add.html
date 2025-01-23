@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Add game</h3>
+
+            {{ form.as_p }}
+            <input type="submit" value="Add"/>
+
+        </form>
+    {% else %}
+        <p>You must be logged in to view this page</p>
+    {% endif %}
+{% endblock %}

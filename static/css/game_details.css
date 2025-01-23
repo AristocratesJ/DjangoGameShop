@@ -1,0 +1,53 @@
+.game-image img {
+    width: 500px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+
+.game-details {
+    padding: 15px;
+    background: #f9f9f9;
+    border: 3px solid #ddd;
+    border-radius: 15px;
+    text-align: center;
+    width: 350px;
+    max-width: 100%;
+    position: absolute;
+    margin-left: 60%;
+}
+.game-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.game-details ul li {
+    margin-bottom: 10px;
+}
+
+.game-details a{
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+.game-details a:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.game-details h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.platform-icon {
+    width: 30px;
+    height: auto;
+    vertical-align: middle;
+    margin-left: 5px;
+}
